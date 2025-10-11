@@ -7,5 +7,5 @@ Route::get('/app', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
