@@ -37,7 +37,7 @@
         </div>
         <div class="relative animate-slide-up lg:animate-float">
           <div class="absolute -inset-4 bg-gradient-hero opacity-20 blur-3xl rounded-full"></div>
-          <img src="resources/image/hero-meditation.jpg" alt="" class="relative rounded-3xl shadow-medium w-full h-auto">
+          <img src="{{ asset('images/1.jpg') }}" alt="" class="relative rounded-3xl shadow-medium w-full h-auto">
         </div>
       </div>
     </div>
@@ -86,27 +86,27 @@
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         <div class="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-smooth animate-slide-up border border-border hover:border-primary/30" style="animation-delay: 0s;">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-light to-primary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="/assets/icon-brain-BuIqC0CY.png" alt="Tes Kesehatan Mental" class="w-full h-full object-contain"></div>
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-light to-primary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="{{ asset('images/3.1.png') }}" alt="Tes Kesehatan Mental" class="w-full h-full object-contain"></div>
           <h3 class="text-xl font-semibold mb-4">Tes Kesehatan Mental</h3>
           <p class="text-muted-foreground">Evaluasi kondisi mental Anda dengan tes yang telah dirancang oleh profesional</p>
         </div>
         <div class="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-smooth animate-slide-up border border-border hover:border-primary/30" style="animation-delay: 0.1s;">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary-light to-secondary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="/assets/icon-chat-CjMIRV8r.png" alt="Forum Chat &amp; Dukungan" class="w-full h-full object-contain"></div>
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary-light to-secondary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="{{ asset('images/3.2.png') }}" alt="Forum Chat &amp; Dukungan" class="w-full h-full object-contain"></div>
           <h3 class="text-xl font-semibold mb-4">Forum Chat &amp; Dukungan</h3>
           <p class="text-muted-foreground">Berbagi cerita dan mendapatkan dukungan dari komunitas yang peduli</p>
         </div>
         <div class="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-smooth animate-slide-up border border-border hover:border-primary/30" style="animation-delay: 0.2s;">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-light to-accent p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="/assets/icon-education-C_fiPnyO.png" alt="Artikel &amp; Edukasi" class="w-full h-full object-contain"></div>
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-light to-accent p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="{{ asset('images/3.3.png') }}" alt="Artikel &amp; Edukasi" class="w-full h-full object-contain"></div>
           <h3 class="text-xl font-semibold mb-4">Artikel &amp; Edukasi</h3>
           <p class="text-muted-foreground">Akses berbagai artikel dan materi edukasi seputar kesehatan mental</p>
         </div>
         <div class="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-smooth animate-slide-up border border-border hover:border-primary/30" style="animation-delay: 0.3s;">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="/assets/icon-chatbot-CMn1PF9N.png" alt="Chatbot Pendamping" class="w-full h-full object-contain"></div>
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="{{ asset('images/3.4.png') }}" alt="Chatbot Pendamping" class="w-full h-full object-contain"></div>
           <h3 class="text-xl font-semibold mb-4">Chatbot Pendamping</h3>
           <p class="text-muted-foreground">Asisten AI yang siap membantu dan mendengarkan Anda kapan saja</p>
         </div>
         <div class="group bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-smooth animate-slide-up border border-border hover:border-primary/30" style="animation-delay: 0.4s;">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary to-primary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="/assets/icon-dashboard-DRAZnGGe.png" alt="Dashboard Personal" class="w-full h-full object-contain"></div>
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary to-primary p-4 mb-6 shadow-soft group-hover:scale-110 transition-smooth"><img src="{{ asset('images/3.5.png') }}" alt="Dashboard Personal" class="w-full h-full object-contain"></div>
           <h3 class="text-xl font-semibold mb-4">Dashboard Personal</h3>
           <p class="text-muted-foreground">Pantau perkembangan kesehatan mental Anda melalui grafik dan statistik</p>
         </div>
@@ -198,7 +198,7 @@
           </div>
           <div class="order-1 md:order-2 flex justify-center animate-float">
             <div class="relative">
-              <div class="absolute -inset-4 bg-card/20 blur-2xl rounded-full"></div><img src="/assets/thinking-person-k7Riv1mE.png" alt="Person thinking" class="relative w-64 h-64 md:w-80 md:h-80 object-contain">
+              <div class="absolute -inset-4 bg-card/20 blur-2xl rounded-full"></div><img src="{{ asset('images/2.png') }}" alt="Person thinking" class="relative w-64 h-64 md:w-80 md:h-80 object-contain">
             </div>
           </div>
         </div>
