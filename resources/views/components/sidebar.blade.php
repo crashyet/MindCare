@@ -1,23 +1,69 @@
+<!-- ===== Header (Mobile) ===== -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border shadow-soft">
+  <div class="flex items-center justify-between px-4 h-16">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-gradient-hero flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-heart w-5 h-5 text-primary-foreground">
+          <path
+            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3
+               c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 
+               0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+          </path>
+        </svg>
+      </div>
+      <span class="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        MindCare Admin
+      </span>
+    </div>
+
+    <!-- Tombol Menu Mobile -->
+    <button id="menuToggle"
+      class="p-2 rounded-lg hover:bg-muted transition-smooth focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-menu w-6 h-6">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Sidebar ===== -->
 <aside
-  class="fixed top-0 left-0 h-full bg-sidebar border-r border-sidebar-border shadow-medium z-40 transition-transform duration-300 -translate-x-full lg:translate-x-0 w-64">
+  id="sidebar"
+  class="fixed top-0 left-0 h-full bg-sidebar border-r border-sidebar-border shadow-medium z-40 
+         transition-transform duration-300 -translate-x-full lg:translate-x-0 w-64"
+>
   <div class="flex flex-col h-full">
+    <!-- Header Sidebar -->
     <div class="hidden lg:flex items-center gap-2 p-6 border-b border-sidebar-border">
       <div class="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-soft">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          fill="currentColor" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-heart w-6 h-6 text-primary-foreground">
           <path
-            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-          </path>
+            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3
+               c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 
+               0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
         </svg>
       </div>
       <div>
         <span
-          class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">MindCare</span>
+          class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
+          MindCare
+        </span>
         <span class="text-xs text-muted-foreground">Admin Panel</span>
       </div>
     </div>
 
+    <!-- Navigation -->
     <nav class="flex-1 p-4 space-y-2 overflow-y-auto mt-16 lg:mt-0">
       <a class="{{ request()->is('admin') ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-soft' : 'text-sidebar-foreground hover:bg-sidebar-accent/50' }} flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth"
         href="/admin">
@@ -116,17 +162,23 @@
       </a>
     </nav>
 
+    <!-- Footer -->
     <div class="p-4 border-t border-sidebar-border space-y-3">
-      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-sidebar-accent transition-smooth"
-        type="button" id="radix-:rp:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
-        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10"><img
-            class="aspect-square h-full w-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" /></span>
+      <button
+        class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-sidebar-accent transition-smooth"
+        type="button"
+      >
+        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img class="aspect-square h-full w-full"
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" />
+        </span>
         <div class="flex-1 text-left">
           <p class="text-sm font-medium text-sidebar-foreground">Admin</p>
           <p class="text-xs text-muted-foreground">admin@mindcare.com</p>
         </div>
       </button>
-      
+
+      <!-- Tombol Dark Mode -->
       <button
         id="darkModeToggle"
         class="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background 
@@ -134,53 +186,62 @@
                focus-visible:ring-offset-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground 
                h-10 px-4 py-2 w-full justify-start gap-3"
       >
-
-      <svg id="darkIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        <svg id="darkIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-moon w-5 h-5">
+          class="lucide lucide-moon w-6 h-6">
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
         </svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-moon w-5 h-5">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-        </svg> -->
         <span id="darkLabel">Mode Gelap</span>
       </button>
     </div>
   </div>
 </aside>
 
+<!-- ===== Overlay (untuk mobile) ===== -->
+<div id="overlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden transition-opacity duration-300"></div>
 
-<!-- ===== JavaScript untuk Dark Mode ===== -->
+<!-- ===== JavaScript ===== -->
 <script>
   const html = document.documentElement;
-  const toggle = document.getElementById("darkModeToggle");
+  const toggleDark = document.getElementById("darkModeToggle");
   const icon = document.getElementById("darkIcon");
   const label = document.getElementById("darkLabel");
+  const sidebar = document.getElementById("sidebar");
+  const menuToggle = document.getElementById("menuToggle");
+  const overlay = document.getElementById("overlay");
 
-  // Cek preferensi awal (dari localStorage atau sistem)
+  // === DARK MODE ===
   const storedTheme = localStorage.getItem("theme");
   const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  if (storedTheme === "dark" || (!storedTheme && systemPrefersDark)) {
-    html.classList.add("dark");
-    label.textContent = "Mode Terang";
-    icon.innerHTML = '<path d="M12 4a8 8 0 1 0 8 8H12z"/>'; // ikon matahari
-  }
-
-  // Toggle event
-  toggle.addEventListener("click", () => {
-    const isDark = html.classList.toggle("dark");
-
-    if (isDark) {
+  function setTheme(dark) {
+    if (dark) {
+      html.classList.add("dark");
       localStorage.setItem("theme", "dark");
       label.textContent = "Mode Terang";
-      icon.innerHTML = '<path d="M12 4a8 8 0 1 0 8 8H12z"/>'; // Matahari
     } else {
+      html.classList.remove("dark");
       localStorage.setItem("theme", "light");
       label.textContent = "Mode Gelap";
-      icon.innerHTML = '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>'; // Bulan
     }
+  }
+
+  setTheme(storedTheme === "dark" || (!storedTheme && systemPrefersDark));
+
+  toggleDark.addEventListener("click", () => {
+    setTheme(!html.classList.contains("dark"));
+  });
+
+  // === SIDEBAR TOGGLE (mobile) ===
+  menuToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("-translate-x-full");
+    overlay.classList.toggle("hidden");
+    document.body.classList.toggle("overflow-hidden");
+  });
+
+  overlay.addEventListener("click", () => {
+    sidebar.classList.add("-translate-x-full");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
   });
 </script>

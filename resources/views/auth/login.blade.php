@@ -34,11 +34,7 @@
         <!-- Tabs -->
         <div class="w-full">
           <div role="tablist" class="grid w-full grid-cols-2 bg-muted rounded-md p-1 text-muted-foreground mb-2">
-            <button type="button" 
-              role="tab" 
-              aria-selected="true" 
-              aria-controls="tab-login" 
-              id="tab-btn-login"
+            <button type="button" role="tab" aria-selected="true" aria-controls="tab-login" id="tab-btn-login"
               class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium 
                      ring-offset-background transition-all 
                      data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm
@@ -46,11 +42,7 @@
               data-state="active">
               Login
             </button>
-            <button type="button" 
-              role="tab" 
-              aria-selected="false" 
-              aria-controls="tab-signup" 
-              id="tab-btn-signup"
+            <button type="button" role="tab" aria-selected="false" aria-controls="tab-signup" id="tab-btn-signup"
               class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium 
                      ring-offset-background transition-all 
                      data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm
@@ -62,17 +54,18 @@
 
           <!-- Login Form -->
           <div id="tab-login" role="tabpanel" aria-labelledby="tab-btn-login" data-state="active" class="space-y-4">
-            <form class="space-y-4">
+            <form class="space-y-4" action="{{ route('login') }}" method="POST">
+              @csrf
               <div class="space-y-2">
                 <label for="login-email" class="text-sm font-medium leading-none">Email</label>
-                <input id="login-email" type="email" placeholder="nama@example.com" required
+                <input id="login-email" name="email" type="email" placeholder="nama@example.com" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               </div>
               <div class="space-y-2">
                 <label for="login-password" class="text-sm font-medium leading-none">Password</label>
-                <input id="login-password" type="password" placeholder="••••••••" required
+                <input id="login-password" name="password" type="password" placeholder="••••••••" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
@@ -87,31 +80,32 @@
 
           <!-- Signup Form -->
           <div id="tab-signup" role="tabpanel" aria-labelledby="tab-btn-signup" data-state="inactive" hidden class="space-y-4">
-            <form class="space-y-4">
+            <form class="space-y-4" method="POST" action="{{ route('register') }}">
+              @csrf
               <div class="space-y-2">
                 <label for="signup-name" class="text-sm font-medium leading-none">Nama Lengkap</label>
-                <input id="signup-name" type="text" placeholder="John Doe" required
+                <input id="signup-name" name="name" type="text" placeholder="John Doe" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               </div>
               <div class="space-y-2">
                 <label for="signup-email" class="text-sm font-medium leading-none">Email</label>
-                <input id="signup-email" type="email" placeholder="nama@example.com" required
+                <input id="signup-email" name="email" type="email" placeholder="nama@example.com" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               </div>
               <div class="space-y-2">
                 <label for="signup-password" class="text-sm font-medium leading-none">Password</label>
-                <input id="signup-password" type="password" placeholder="••••••••" required
+                <input id="signup-password" name="password" type="password" placeholder="••••••••" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               </div>
               <div class="space-y-2">
                 <label for="signup-confirm" class="text-sm font-medium leading-none">Konfirmasi Password</label>
-                <input id="signup-confirm" type="password" placeholder="••••••••" required
+                <input id="signup-confirm" name="password_confirmation" type="password" placeholder="••••••••" required
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base 
                          placeholder:text-muted-foreground focus-visible:outline-none 
                          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">

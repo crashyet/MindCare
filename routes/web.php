@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/app', function () {
@@ -17,10 +19,26 @@ Route::get('/auth', function () {
 });
 
 
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login.page');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        if (Auth::user()->role === 'admin') {
+            return view('admin.dashboard');
+        }
+    })->name('dashboard');
 });
+
+
+
+
+
+// Route::get('/admin', function () {
+//     return view('admin.dashboard');
+// });
 
 Route::get('/admin/artikel', function () {
     return view('admin.manajemen-artikel');
@@ -63,9 +81,9 @@ Route::get('/admin/setting', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
 
 Route::get('/dashboard/artikel', function () {
     return view('artikel');
