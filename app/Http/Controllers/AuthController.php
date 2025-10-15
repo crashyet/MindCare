@@ -30,7 +30,8 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect()->route('auth');
+        // return redirect()->route('/auth');
+        return redirect('/auth');
     }
 
     public function login(Request $request)
