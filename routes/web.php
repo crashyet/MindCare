@@ -29,10 +29,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/landingpage');
+    return redirect('/');
 })->name('logout');
 
-Route::get('/landingpage', fn() => view('user.landingpage'));
+Route::get('/', fn() => view('user.landingpage'));
 
 
 /*
