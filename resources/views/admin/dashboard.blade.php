@@ -29,7 +29,7 @@
                                 </svg>
                             </div>
                             <div class="p-6 pt-0">
-                                <div class="text-3xl font-bold text-foreground">1</div>
+                                <div class="text-3xl font-bold text-foreground">{{ $totalUsers }}</div>
                                 <p class="text-xs text-muted-foreground mt-1">Pengguna terdaftar</p>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                 </svg>
                             </div>
                             <div class="p-6 pt-0">
-                                <div class="text-3xl font-bold text-foreground">2</div>
+                                <div class="text-3xl font-bold text-foreground">{{ $totalArticles }}</div>
                                 <p class="text-xs text-muted-foreground mt-1">Artikel diterbitkan</p>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 </svg>
                             </div>
                             <div class="p-6 pt-0">
-                                <div class="text-3xl font-bold text-foreground">2</div>
+                                <div class="text-3xl font-bold text-foreground">{{ $totalTests }}</div>
                                 <p class="text-xs text-muted-foreground mt-1">Tes mental health</p>
                             </div>
                         </div>

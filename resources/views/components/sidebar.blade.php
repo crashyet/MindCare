@@ -1,3 +1,8 @@
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
+
+
 <!-- ===== Header (Mobile) ===== -->
 <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border shadow-soft">
   <div class="flex items-center justify-between px-4 h-16">
@@ -104,7 +109,7 @@
         <span class="text-sm">Manajemen Artikel</span>
       </a>
 
-      <a class="{{ request()->is('admin/edukasi') ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-soft' : 'text-sidebar-foreground hover:bg-sidebar-accent/50' }} flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth"
+      <!-- <a class="{{ request()->is('admin/edukasi') ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-soft' : 'text-sidebar-foreground hover:bg-sidebar-accent/50' }} flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth"
         href="/admin/edukasi"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-graduation-cap w-5 h-5">
@@ -114,7 +119,7 @@
           <path d="M22 10v6"></path>
           <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
         </svg><span class="text-sm">Manajemen Edukasi</span>
-      </a>
+      </a> -->
       
       <a class="{{ request()->is('admin/forum') ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-soft' : 'text-sidebar-foreground hover:bg-sidebar-accent/50' }} flex items-center gap-3 px-4 py-3 rounded-xl transition-smooth"
         href="/admin/forum"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -168,13 +173,13 @@
         class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-sidebar-accent transition-smooth"
         type="button"
       >
-        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-          <img class="aspect-square h-full w-full"
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" />
+        <span class="relative flex items-center justify-center shrink-0 overflow-hidden rounded-full w-10 h-10 bg-primary">
+          <div class="flex items-center justify-center aspect-square h-full w-full text-foregroud">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+          </div>
         </span>
         <div class="flex-1 text-left">
-          <p class="text-sm font-medium text-sidebar-foreground">Admin</p>
-          <p class="text-xs text-muted-foreground">admin@mindcare.com</p>
+          <p class="text-sm font-medium text-sidebar-foreground">{{ Auth::user()->name }}</p>
+          <p class="text-xs text-muted-foreground">{{ Auth::user()->email }}</p>
         </div>
       </button>
 
