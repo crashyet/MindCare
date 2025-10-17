@@ -88,4 +88,15 @@ class TestController extends Controller
         $test->delete();
         return back()->with('success', 'Tes berhasil dihapus.');
     }
+
+    public function toggleStatus($id)
+{
+    $test = Test::findOrFail($id);
+    $test->status_publikasi = !$test->status_publikasi;
+    $test->save();
+
+    $status = $test->status_publikasi ? 'dipublikasikan' : 'diubah ke draft';
+    return redirect()->route('admin.tests.index')->with('success', "Tes berhasil {$status}.");
+}
+    
 }

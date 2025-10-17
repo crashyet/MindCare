@@ -121,4 +121,21 @@ class ArticleController extends Controller
         $article->increment('likes');
         return response()->json(['likes' => $article->likes]);
     }
+
+        /**
+     * Toggle status artikel: publish <-> draft
+     */
+    public function toggleStatus($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->published = !$article->published;
+        $article->save();
+
+        $status = $article->published ? 'dipublikasikan' : 'diubah ke draft';
+
+        return redirect()
+            ->route('admin.articles.index')
+            ->with('success', "Status artikel berhasil {$status}.");
+    }
+
 }

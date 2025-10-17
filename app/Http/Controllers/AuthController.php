@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        return view('login'); // sesuai nama file blade kamu
+        return view('auth.login'); // sesuai nama file blade kamu
     }
 
     public function register(Request $request)
@@ -54,12 +54,5 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login.page');
-    }
+    
 }

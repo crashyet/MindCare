@@ -9,7 +9,8 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 md:h-20"><a class="flex items-center gap-2 group" href="/">
           <div class="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart w-6 h-6 text-primary-foreground">
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                                  <img src="{{ asset('images/logo.png') }}" alt="MindCare Logo">
+
             </svg></div><span class="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">MindCare</span>
         </a>
         <div class="hidden md:flex items-center gap-8"><a href="/" class="text-foreground hover:text-primary transition-smooth font-medium">Beranda</a><a href="#about" class="text-foreground hover:text-primary transition-smooth font-medium">Tentang</a><a href="#features" class="text-foreground hover:text-primary transition-smooth font-medium">Fitur</a><a href="#goals" class="text-foreground hover:text-primary transition-smooth font-medium">Tujuan</a></div>
@@ -212,9 +213,9 @@
       <div class="grid md:grid-cols-4 gap-8 mb-8">
         <div class="md:col-span-1">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-soft"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart w-6 h-6 text-primary-foreground">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </svg></div><span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">MindCare</span>
+            <div class="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center shadow-soft">
+              <img src="{{ asset('images/logo.png') }}" alt="">
+            </div><span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">MindCare</span>
           </div>
           <p class="text-muted-foreground mb-4">Untuk kesehatan mental yang lebih baik.</p>
           <p class="text-sm text-muted-foreground">SDGs 3: Kehidupan Sehat dan Kesejahteraan</p>

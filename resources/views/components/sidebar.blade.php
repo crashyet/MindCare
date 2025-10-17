@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border shadow-soft">
   <div class="flex items-center justify-between px-4 h-16">
     <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-full bg-gradient-hero flex items-center justify-center">
+      <div class="w-8 h-8 rounded-full bg-gradient-hero flex items-center juxxstify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
           viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -53,10 +53,7 @@ use Illuminate\Support\Facades\Auth;
           fill="currentColor" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-heart w-6 h-6 text-primary-foreground">
-          <path
-            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3
-               c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 
-               0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          <img src="{{ asset('images/logo.png') }}" alt="">
         </svg>
       </div>
       <div>
@@ -174,12 +171,23 @@ use Illuminate\Support\Facades\Auth;
         type="button"
       >
         <span class="relative flex items-center justify-center shrink-0 overflow-hidden rounded-full w-10 h-10 bg-primary">
-          <div class="flex items-center justify-center aspect-square h-full w-full text-foregroud">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+          <div class="flex items-center justify-center aspect-square h-full w-full text-foregroud">@if (Auth::check())
+    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+@else
+    G
+@endif
+
           </div>
         </span>
         <div class="flex-1 text-left">
-          <p class="text-sm font-medium text-sidebar-foreground">{{ Auth::user()->name }}</p>
-          <p class="text-xs text-muted-foreground">{{ Auth::user()->email }}</p>
+          @if (Auth::check())
+    <p class="text-sm font-medium text-sidebar-foreground">{{ Auth::user()->name }}</p>
+    <p class="text-xs text-muted-foreground">{{ Auth::user()->email }}</p>
+@else
+    <p class="text-sm font-medium text-sidebar-foreground">Guest</p>
+    <p class="text-xs text-muted-foreground">guest@example.com</p>
+@endif
+
         </div>
       </button>
 
@@ -197,6 +205,21 @@ use Illuminate\Support\Facades\Auth;
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
         </svg>
         <span id="darkLabel">Mode Gelap</span>
+        <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit"
+        class="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-log-out w-5 h-5">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" x2="9" y1="12" y2="12"></line>
+        </svg>
+        <span>Logout</span>
+    </button>
+</form>
       </button>
     </div>
   </div>
