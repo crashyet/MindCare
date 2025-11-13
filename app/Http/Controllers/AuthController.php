@@ -40,6 +40,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            
+            session(['just_logged_in' => true]);
 
             // 🔥 Langsung arahkan sesuai role
             if ($user->role === 'admin') {

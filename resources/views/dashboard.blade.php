@@ -35,8 +35,9 @@
                                 <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span>
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Mood Hari Ini</p>
-                            <p class="text-2xl font-bold">Baik</p>
-                        </div>
+<p id="mood-display" class="text-2xl font-bold">
+    {{ Auth::user()->mood ?? 'Belum memilih' }}
+</p>                        </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.1s;">
                             <div class="flex items-start justify-between mb-4">
@@ -219,5 +220,57 @@
             </div>
         </main>
     </div>
+
+    @if (session('just_logged_in'))
+    <div 
+        x-data="{ open: true }" 
+        x-show="open"
+        x-transition
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50"
+    >
+        <div class="bg-white rounded-2xl shadow-lg p-6 w-80 text-center">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">
+                Gimana perasaan kamu hari ini?
+            </h2>
+
+            <div class="space-y-2">
+                @foreach(['Senang 😊', 'Tenang 😌', 'Biasa saja 😐', 'Sedih 😢', 'Stres 😫'] as $mood)
+                    <button 
+                        @click="saveMood('{{ $mood }}'); open = false;"
+                        class="w-full py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition"
+                    >
+                        {{ $mood }}
+                    </button>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function saveMood(mood) {
+        fetch('{{ route('save.mood') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            body: JSON.stringify({ mood }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                const moodDisplay = document.getElementById('mood-display');
+                if (moodDisplay) moodDisplay.textContent = mood;
+            }
+        });
+    }
+    </script>
+
+    @php
+        // 🧹 Hapus flag supaya popup tidak muncul lagi setelah refresh
+        session()->forget('just_logged_in');
+    @endphp
+@endif
+
 
 @endsection

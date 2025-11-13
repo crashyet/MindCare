@@ -12,12 +12,15 @@ use App\Http\Controllers\User\ArticleController as UserArticleController;
 use App\Http\Controllers\User\TestController as UserTestController;
 use App\Http\Controllers\User\ChatbotController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
-
+use App\Http\Controllers\MoodController;
 /*
 |--------------------------------------------------------------------------
 | General & Auth Routes
 |--------------------------------------------------------------------------
 */
+
+
+Route::post('/save-mood', [MoodController::class, 'saveMood'])->name('save.mood');
 
 Route::get('/', fn() => view('user.landingpage'));
 Route::get('/app', fn() => view('app'));
