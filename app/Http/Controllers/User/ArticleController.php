@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\User;
+
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\ArticleRead;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -24,6 +27,24 @@ class ArticleController extends Controller
         // Naikkan jumlah views
         $article->increment('views');
 
+        // Simpan ke tabel article_reads kalau user login
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            // Cek apakah user sudah pernah baca artikel ini
+            $alreadyRead = ArticleRead::where('user_id', $user->id)
+                ->where('article_id', $article->id)
+                ->exists();
+
+            if (!$alreadyRead) {
+                ArticleRead::create([
+                    'user_id' => $user->id,
+                    'article_id' => $article->id,
+                    'read_at' => now(),
+                ]);
+            }
+        }
+
         // Ambil artikel lain sebagai rekomendasi
         $related = Article::where('category', $article->category)
             ->where('id', '!=', $article->id)
@@ -32,6 +53,8 @@ class ArticleController extends Controller
 
         return view('user.artikelDetail', compact('article', 'related'));
     }
+
+
 
     public function like($slug)
     {

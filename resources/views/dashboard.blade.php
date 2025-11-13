@@ -32,12 +32,13 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span>
+                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Mood Hari Ini</p>
-<p id="mood-display" class="text-2xl font-bold">
-    {{ Auth::user()->mood ?? 'Belum memilih' }}
-</p>                        </div>
+                            <p id="mood-display" class="text-2xl font-bold">
+                                {{ Auth::user()->mood ?? 'Belum memilih' }}
+                            </p>                        
+                        </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.1s;">
                             <div class="flex items-start justify-between mb-4">
@@ -53,10 +54,10 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+2</span>
+                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+2</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Artikel Dibaca</p>
-                            <p class="text-2xl font-bold">12</p>
+                            <p class="text-2xl font-bold">{{ $articleStats['total_read'] }}</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.2s;">
@@ -70,7 +71,7 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span>
+                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Diskusi Aktif</p>
                             <p class="text-2xl font-bold">8</p>
@@ -88,7 +89,7 @@
                                         </polyline>
                                     </svg>
                                 </div>
-                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span>
+                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Progress</p>
                             <p class="text-2xl font-bold">78%</p>
@@ -226,7 +227,7 @@
         x-data="{ open: true }" 
         x-show="open"
         x-transition
-        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50"
+        class="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50"
     >
         <div class="bg-white rounded-2xl shadow-lg p-6 w-80 text-center">
             <h2 class="text-xl font-semibold mb-4 text-gray-700">
@@ -246,31 +247,32 @@
         </div>
     </div>
 
+
     <script>
-    function saveMood(mood) {
-        fetch('{{ route('save.mood') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            },
-            body: JSON.stringify({ mood }),
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                const moodDisplay = document.getElementById('mood-display');
-                if (moodDisplay) moodDisplay.textContent = mood;
-            }
-        });
-    }
+        function saveMood(mood) {
+            fetch('{{ route('save.mood') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ mood }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const moodDisplay = document.getElementById('mood-display');
+                    if (moodDisplay) moodDisplay.textContent = mood;
+                }
+            });
+        }
     </script>
 
     @php
         // 🧹 Hapus flag supaya popup tidak muncul lagi setelah refresh
         session()->forget('just_logged_in');
     @endphp
-@endif
+    @endif
 
 
 @endsection

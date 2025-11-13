@@ -92,7 +92,8 @@ Route::patch('/tes/{id}/toggle', [TestController::class, 'toggleStatus'])->name(
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
     // 🏠 Dashboard utama
-    Route::get('/', fn() => view('dashboard'))->name('user.dashboard');
+    // Route::get('/', fn() => view('dashboard'))->name('user.dashboard');
+    Route::get('/', [UserDashboardController::class, 'index'])->name('user.dashboard');
 
     // 📰 Artikel
     Route::get('/artikel', [UserArticleController::class, 'index'])->name('articles.index');
