@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\ArticleController as UserArticleController;
 use App\Http\Controllers\User\TestController as UserTestController;
-use App\Http\Controllers\User\ChatbotController;
+use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 
 /*
@@ -101,6 +101,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
     // 🤖 Chatbot
     Route::get('/chatbot', fn() => view('user.chatbot'))->name('user.chatbot');
+    Route::post('/chat/gemini', [App\Http\Controllers\User\ChatController::class, 'sendMessage']);
+
 
     // 💬 Forum
     Route::get('/forum', fn() => view('user.forum'))->name('user.forum');

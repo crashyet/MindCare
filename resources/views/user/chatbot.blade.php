@@ -125,8 +125,15 @@
 </div>
 
 <!-- SCRIPT -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+
+<!-- <script type="module">
+    import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+    // 🔑 Ganti dengan API Key kamu dari Google AI Studio
+    const genAI = new GoogleGenerativeAI("AIzaSyCarykvQXqetUrRoWTwwhdEOrlc2XmyDp0");
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
     const chatBox = document.getElementById('chat-box');
     const input = document.getElementById('chat-input');
     const sendBtn = document.getElementById('chat-send');
@@ -178,26 +185,190 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBox.scrollTop = chatBox.scrollHeight;
 
         try {
-            const res = await fetch("https://apifreellm.com/api/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message }),
-            });
-
-            const data = await res.json();
+            const result = await model.generateContent(message);
+            const text = result.response.text();
             typing.remove();
-
-            if (data.status === "success") appendMessage(data.response, 'bot');
-            else appendMessage(data.error || "Terjadi kesalahan dari server 😢", 'bot');
-        } catch {
+            appendMessage(text, 'bot');
+        } catch (err) {
             typing.remove();
-            appendMessage("Gagal menghubungi server. Coba lagi nanti ⚠️", 'bot');
+            appendMessage("⚠️ Gagal menghubungi Gemini: " + err.message, 'bot');
+            console.error(err);
         }
     }
 
     sendBtn.addEventListener('click', () => sendMessage());
     input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
     quickReplies.forEach(btn => btn.addEventListener('click', () => sendMessage(btn.textContent.trim())));
-});
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// resources/js/chat.js atau di blade template
+const chatBox = document.getElementById('chat-box');
+const input = document.getElementById('chat-input');
+const sendBtn = document.getElementById('chat-send');
+const quickReplies = document.querySelectorAll('.quick-reply');
+
+// function appendMessage(message, sender = 'user') {
+//     const wrapper = document.createElement('div');
+//     wrapper.className = `flex gap-3 flex-row ${sender === 'user' ? 'justify-end' : ''}`;
+    
+//     if (sender === 'bot') {
+//         wrapper.innerHTML = `
+//             <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-hero">
+//                 <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-bot w-5 h-5 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+//                     <path d="M12 8V4H8"></path>
+//                     <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+//                     <path d="M2 14h2"></path>
+//                     <path d="M20 14h2"></path>
+//                     <path d="M15 13v2"></path>
+//                     <path d="M9 13v2"></path>
+//                 </svg>
+//             </div>
+//             <div class="flex-1 max-w-[70%] text-left">
+//                 <div class="inline-block p-4 rounded-2xl shadow-soft bg-card text-foreground rounded-tl-none">${message}</div>
+//             </div>
+//         `;
+//     } else {
+//         wrapper.innerHTML = `
+//             <div class="flex-1 w-full text-right">
+//                 <div class="inline-block p-4 rounded-2xl shadow-soft bg-gradient-hero text-primary-foreground rounded-tr-none">${message}</div>
+//             </div>
+//         `;
+//     }
+//     chatBox.appendChild(wrapper);
+//     chatBox.scrollTop = chatBox.scrollHeight;
+// }
+
+
+
+
+function formatMessage(text) {
+    // 1. Escape HTML untuk keamanan
+    const div = document.createElement('div');
+    div.textContent = text;
+    let formatted = div.innerHTML;
+    
+    // 2. Bold: **text** → <strong>text</strong>
+    formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    
+    // 3. Italic: *text* → <em>text</em> (hanya jika bukan bagian dari **)
+    formatted = formatted.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+    
+    // 4. Code blocks: ```code```
+    formatted = formatted.replace(/```(.+?)```/gs, '<pre class="bg-gray-100 p-2 rounded my-2 overflow-x-auto"><code>$1</code></pre>');
+    
+    // 5. Inline code: `code`
+    formatted = formatted.replace(/`(.+?)`/g, '<code class="bg-gray-100 px-1 rounded text-sm">$1</code>');
+    
+    // 6. Numbered list
+    formatted = formatted.replace(/^(\d+)\.\s/gm, '<br><strong>$1.</strong> ');
+    
+    // 7. Bullet points
+    formatted = formatted.replace(/^[\*\-]\s/gm, '<br>• ');
+    
+    // 8. Paragraphs: double line break
+    formatted = formatted.replace(/\n\n/g, '</p><p class="mt-3">');
+    
+    // 9. Single line breaks
+    formatted = formatted.replace(/\n/g, '<br>');
+    
+    // 10. Wrap in paragraph
+    formatted = '<p>' + formatted + '</p>';
+    
+    return formatted;
+}
+
+function appendMessage(message, sender = 'user') {
+    const wrapper = document.createElement('div');
+    wrapper.className = `flex gap-3 flex-row ${sender === 'user' ? 'justify-end' : ''} mb-4`;
+    
+    // Format message jika dari bot
+    const displayMessage = sender === 'bot' ? formatMessage(message) : message;
+    
+    if (sender === 'bot') {
+        wrapper.innerHTML = `
+            <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-hero">
+                <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-bot w-5 h-5 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8V4H8"></path>
+                    <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                    <path d="M2 14h2"></path>
+                    <path d="M20 14h2"></path>
+                    <path d="M15 13v2"></path>
+                    <path d="M9 13v2"></path>
+                </svg>
+            </div>
+            <div class="flex-1 max-w-[70%] text-left">
+                <div class="p-4 rounded-2xl shadow-soft bg-card text-foreground rounded-tl-none prose prose-sm max-w-none">
+                    ${displayMessage}
+                </div>
+            </div>
+        `;
+    } else {
+        wrapper.innerHTML = `
+            <div class="flex-1 w-full text-right">
+                <div class="inline-block p-4 rounded-2xl shadow-soft bg-gradient-hero text-primary-foreground rounded-tr-none max-w-[70%]">
+                    ${displayMessage}
+                </div>
+            </div>
+        `;
+    }
+    chatBox.appendChild(wrapper);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage(messageText) {
+    const message = messageText || input.value.trim();
+    if (!message) return;
+    
+    appendMessage(message, 'user');
+    input.value = '';
+    
+    const typing = document.createElement('p');
+    typing.className = "text-sm text-muted-foreground px-2 italic";
+    typing.innerText = "Bot sedang mengetik...";
+    chatBox.appendChild(typing);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    
+    try {
+        const response = await fetch('/dashboard/chat/gemini', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ message })
+        });
+        
+        const data = await response.json();
+        typing.remove();
+        
+        if (data.error) {
+            appendMessage("⚠️ Error: " + data.error, 'bot');
+        } else {
+            appendMessage(data.text, 'bot');
+        }
+    } catch (err) {
+        typing.remove();
+        appendMessage("⚠️ Gagal menghubungi server: " + err.message, 'bot');
+        console.error(err);
+    }
+}
+
+sendBtn.addEventListener('click', () => sendMessage());
+input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+quickReplies.forEach(btn => btn.addEventListener('click', () => sendMessage(btn.textContent.trim())));
 </script>
 @endsection
