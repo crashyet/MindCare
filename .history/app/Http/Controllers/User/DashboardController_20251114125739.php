@@ -4,23 +4,21 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
+
 use App\Models\ArticleRead;
-use App\Models\Forum;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $articleStats = $this->getArticleStats();
-        $forumStats = $this->getForumStats();
-
+        return view('dashboard', compact('articleStats'));
         $activities = Activity::where('user_id', Auth::id())
             ->latest()
             ->take(5)
             ->get();
 
-        return view('dashboard', compact('articleStats', 'forumStats', 'activities'));
+        return view('user.dashboard', compact('activities'));
     }
 
     private function getArticleStats()
@@ -49,14 +47,6 @@ class DashboardController extends Controller
         return [
             'total_read' => $totalRead,
             'recent_reads' => $recentReads
-        ];
-    }
-
-    private function getForumStats()
-    {
-        return [
-            'total_forums' => Forum::count(),
-            'active_forums' => Forum::whereHas('replies')->count()
         ];
     }
 }

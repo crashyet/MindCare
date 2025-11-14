@@ -13,25 +13,19 @@ use App\Models\Activity;
 class ForumController extends Controller
 {
     /**
-     * Menampilkan semua forum + statistik
+     * Menampilkan semua forum
      */
     public function index()
     {
-        // Ambil semua forum beserta user dan jumlah reply/like
+        // $forums = Forum::with('user')->latest()->get();
+
+        // Ambil semua forum beserta user dan jumlah reply-nya
         $forums = Forum::with('user')
-            ->withCount(['replies', 'likes'])
+            ->withCount(['replies', 'likes']) // tambahkan likes_count juga
             ->latest()
             ->get();
 
-        // 🔥 Statistik Forum (REAL-TIME)
-        $stats = [
-            'total_forums'   => Forum::count(),
-'active_users' => Reply::distinct('user_id')->count('user_id'),
-            'today_forums'   => Forum::whereDate('created_at', today())->count(),
-            'today_replies'  => Reply::whereDate('created_at', today())->count(),
-        ];
-
-        return view('user.forum.forum', compact('forums', 'stats'));
+        return view('user.forum.forum', compact('forums'));
     }
 
     /**
@@ -73,22 +67,22 @@ class ForumController extends Controller
      * Menampilkan detail forum berdasarkan slug
      */
     public function show($slug)
-    {
-        // Ambil data forum + user + balasan
-        $forum = Forum::with(['user', 'replies.user'])
-            ->where('slug', $slug)
-            ->firstOrFail();
+{
+    // Ambil forum berdasarkan slug
+    $forum = Forum::with(['user', 'replies.user'])->where('slug', $slug)->firstOrFail();
 
-        // Jumlah balasan
-        $totalReplies = $forum->replies->count();
+    // Hitung total balasan
+    $totalReplies = $forum->replies->count();
 
-        // 🔥 Catat aktivitas pengguna
-        Activity::create([
-            'user_id' => Auth::id(),
-            'type'    => 'forum',
-            'title'   => 'Mengikuti diskusi forum: ' . $forum->title,
-        ]);
+    // 🔥 Catat aktivitas dulu
+    Activity::create([
+        'user_id' => Auth::id(),
+        'type' => 'forum',
+        'title' => 'Mengikuti diskusi forum: ' . $forum->title,
+    ]);
 
-        return view('user.forum.show', compact('forum', 'totalReplies'));
-    }
+    // Baru return view
+    return view('user.forum.show', compact('forum', 'totalReplies'));
+}
+
 }

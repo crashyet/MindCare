@@ -26,7 +26,7 @@ class ForumController extends Controller
         // 🔥 Statistik Forum (REAL-TIME)
         $stats = [
             'total_forums'   => Forum::count(),
-'active_users' => Reply::distinct('user_id')->count('user_id'),
+            'active_users'   => Forum::distinct('user_id')->count('user_id'),
             'today_forums'   => Forum::whereDate('created_at', today())->count(),
             'today_replies'  => Reply::whereDate('created_at', today())->count(),
         ];

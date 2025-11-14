@@ -74,7 +74,7 @@
                                 <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Diskusi Aktif</p>
-                            <p class="text-2xl font-bold"> {{ $forumStats['active_forums'] }}</p>
+                            <p class="text-2xl font-bold">8</p>
                         </div>
                         <!-- <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.3s;">
@@ -95,33 +95,94 @@
                             <p class="text-2xl font-bold">78%</p>
                         </div> -->
                     </div>
-<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
-    <h2 class="text-xl font-semibold mb-4">Aktivitas Terbaru</h2> 
 
-    @forelse ($activities as $act)
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth mb-3">
-            <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+@forelse ($activities as $act)
+        <div class="p-4 mb-3 rounded-lg bg-[#1E1E2D] border border-gray-700 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-blue-400"></span>
 
-            <div class="flex-1">
-                <p class="font-medium">{{ $act->title }}</p>
-
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">
+                <div>
+                    <p class="text-white">{{ $act->title }}</p>
+                    
+                    <span class="text-xs px-2 py-1 rounded-md bg-blue-600/20 text-blue-400">
                         {{ $act->type }}
                     </span>
 
-                    <p class="text-sm text-muted-foreground">
+                    <span class="text-gray-400 text-xs ml-2">
                         {{ $act->created_at->diffForHumans() }}
-                    </p>
+                    </span>
                 </div>
             </div>
         </div>
-    @empty
-        <p class="text-gray-400">Belum ada aktivitas.</p>
-    @endforelse
-</div>
+    
 
 
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
+                        <h2 class="text-xl font-semibold mb-4">Aktivitas Terbaru</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Membaca artikel: Mengatasi Kecemasan</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Artikel</span>
+                                        <p class="text-sm text-muted-foreground">2 jam lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Mengikuti diskusi di forum</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Forum</span>
+                                        <p class="text-sm text-muted-foreground">5 jam lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Menyelesaikan tes kesehatan mental</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Tes</span>
+                                        <p class="text-sm text-muted-foreground">1 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Chat dengan AI Assistant</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Chatbot</span>
+                                        <p class="text-sm text-muted-foreground">2 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Menyelesaikan kuis edukasi: Stres Management</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Edukasi</span>
+                                        <p class="text-sm text-muted-foreground">3 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
                         <h2 class="text-xl font-semibold mb-4">Grafik Mood Mingguan</h2>
                         <div class="h-64 flex items-end justify-between gap-4 px-4">

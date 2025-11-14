@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleRead;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
+
 
 class ArticleController extends Controller
 {

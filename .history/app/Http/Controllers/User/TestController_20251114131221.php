@@ -6,10 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Test;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
-
-
 
 class TestController extends Controller
 {
@@ -114,39 +110,35 @@ class TestController extends Controller
 
 
     public function result($id, $attempt)
-{
-    $test = Test::with('questions')->findOrFail($id);
+    {
+        $test = Test::with('questions')->findOrFail($id);
 
-    $attemptId = $attempt;
+        // Ambil attempt langsung dari parameter
+        $attemptId = $attempt;
 
-    $answers = DB::table('full_texts')
-        ->where('test_id', $id)
-        ->where('user_id', auth()->id() ?? 1)
-        ->where('attempt_id', $attemptId)
-        ->get();
+        $answers = DB::table('full_texts')
+            ->where('test_id', $id)
+            ->where('user_id', auth()->id() ?? 1)
+            ->where('attempt_id', $attemptId)
+            ->get();
 
-    $totalScore = $answers->sum('skor');
+        $totalScore = $answers->sum('skor');
 
-    session()->forget('attempt_id');
+        // Hapus session attempt supaya bisa tes ulang
+        session()->forget('attempt_id');
 
-    if ($totalScore < 10) {
-        $interpretasi = 'Tingkat stres Anda rendah. Kondisi mental Anda stabil.';
-    } elseif ($totalScore < 20) {
-        $interpretasi = 'Anda mengalami stres ringan. Coba luangkan waktu untuk relaksasi.';
-    } elseif ($totalScore < 30) {
-        $interpretasi = 'Stres sedang. Disarankan mulai memperhatikan kesehatan mental Anda.';
-    } else {
-        $interpretasi = 'Stres tinggi. Sebaiknya konsultasikan dengan profesional.';
+        if ($totalScore < 10) {
+            $interpretasi = 'Tingkat stres Anda rendah. Kondisi mental Anda stabil.';
+        } elseif ($totalScore < 20) {
+            $interpretasi = 'Anda mengalami stres ringan. Coba luangkan waktu untuk relaksasi.';
+        } elseif ($totalScore < 30) {
+            $interpretasi = 'Stres sedang. Disarankan mulai memperhatikan kesehatan mental Anda.';
+        } else {
+            $interpretasi = 'Stres tinggi. Sebaiknya konsultasikan dengan profesional.';
+        }
+
+        return view('user.tes-mental-result', compact('test', 'totalScore', 'interpretasi'));
+
+        
     }
-
-    // 🔥 catat aktivitas DISINI, sebelum return
-    Activity::create([
-        'user_id' => auth()->id(),
-        'type' => 'tes',
-        'title' => 'Menyelesaikan tes kesehatan mental',
-    ]);
-
-    return view('user.tes-mental-result', compact('test', 'totalScore', 'interpretasi'));
-}
-
 }
