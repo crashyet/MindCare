@@ -13,7 +13,7 @@
                 <div class="space-y-8 animate-fade-in">
                     <div>
                         <h1 class="text-3xl md:text-4xl font-bold mb-2">Tes <span
-                                class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Mental    
+                                class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Mental
                                 Health</span></h1>
                         <p class="text-muted-foreground text-lg">Evaluasi kondisi kesehatan mental Anda dengan tes yang
                             tervalidasi</p>
