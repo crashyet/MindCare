@@ -13,6 +13,11 @@ use App\Http\Controllers\User\TestController as UserTestController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\MoodController;
+use App\Http\Controllers\User\ForumController;
+use App\Http\Controllers\User\LikeForumController;
+use App\Http\Controllers\User\ReplyController;
+
+
 /*
 |--------------------------------------------------------------------------
 | General & Auth Routes
@@ -109,7 +114,17 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
 
     // 💬 Forum
-    Route::get('/forum', fn() => view('user.forum'))->name('user.forum');
+    // Route::get('/forum', fn() => view('user.forum'))->name('user.forum');
+    Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
+    Route::post('/forum', [ForumController::class, 'store'])->name('forum.store');
+    // Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forum.show');
+    Route::get('/forum/{slug}', [ForumController::class, 'show'])->name('forum.show');
+    Route::post('/forum/{id}/reply', [ReplyController::class, 'store'])->name('reply.store');
+
+    Route::post('/like', [LikeForumController::class, 'toggle'])->name('like.toggle');
+    Route::post('/reply/like-toggle', [LikeForumController::class, 'toggleReply'])->name('reply.like.toggle');
+
+
 
     // 👤 Profil & Settings
     Route::get('/profil', fn() => view('user.profile'))->name('user.profile');

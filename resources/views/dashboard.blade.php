@@ -18,7 +18,7 @@
                         </h1>
                         <p class="text-muted-foreground text-lg">Pantau perkembangan kesehatan mental Anda di sini</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0s;">
                             <div class="flex items-start justify-between mb-4">
@@ -76,7 +76,7 @@
                             <p class="text-sm text-muted-foreground mb-1">Diskusi Aktif</p>
                             <p class="text-2xl font-bold">8</p>
                         </div>
-                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
+                        <!-- <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.3s;">
                             <div class="flex items-start justify-between mb-4">
                                 <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -89,11 +89,11 @@
                                         </polyline>
                                     </svg>
                                 </div>
-                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span> -->
+                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+12%</span>
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Progress</p>
                             <p class="text-2xl font-bold">78%</p>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
                         <h2 class="text-xl font-semibold mb-4">Aktivitas Terbaru</h2>
