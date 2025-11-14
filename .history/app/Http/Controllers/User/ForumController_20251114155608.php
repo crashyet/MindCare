@@ -13,25 +13,16 @@ use App\Models\Activity;
 class ForumController extends Controller
 {
     /**
-     * Menampilkan semua forum + statistik
+     * Menampilkan semua forum
      */
     public function index()
     {
-        // Ambil semua forum beserta user dan jumlah reply/like
         $forums = Forum::with('user')
             ->withCount(['replies', 'likes'])
             ->latest()
             ->get();
 
-        // 🔥 Statistik Forum (REAL-TIME)
-        $stats = [
-            'total_forums'   => Forum::count(),
-'active_users' => Reply::distinct('user_id')->count('user_id'),
-            'today_forums'   => Forum::whereDate('created_at', today())->count(),
-            'today_replies'  => Reply::whereDate('created_at', today())->count(),
-        ];
-
-        return view('user.forum.forum', compact('forums', 'stats'));
+        return view('user.forum.forum', compact('forums'));
     }
 
     /**
@@ -45,7 +36,7 @@ class ForumController extends Controller
             'content'  => 'required|string',
         ]);
 
-        // Buat slug unik dari judul
+        // Buat slug unik
         $slug = Str::slug($validated['title']);
         $originalSlug = $slug;
         $count = 1;
@@ -64,6 +55,13 @@ class ForumController extends Controller
             'content'  => $validated['content'],
         ]);
 
+        // Catat aktivitas
+        Activity::create([
+            'user_id' => Auth::id(),
+            'type' => 'forum',
+            'title' => 'Membuat diskusi baru: ' . $forum->title,
+        ]);
+
         return redirect()
             ->route('forum.show', $forum->slug)
             ->with('success', 'Diskusi berhasil dibuat!');
@@ -74,19 +72,17 @@ class ForumController extends Controller
      */
     public function show($slug)
     {
-        // Ambil data forum + user + balasan
         $forum = Forum::with(['user', 'replies.user'])
             ->where('slug', $slug)
             ->firstOrFail();
 
-        // Jumlah balasan
         $totalReplies = $forum->replies->count();
 
-        // 🔥 Catat aktivitas pengguna
+        // Catat aktivitas (diletakkan sebelum return)
         Activity::create([
             'user_id' => Auth::id(),
-            'type'    => 'forum',
-            'title'   => 'Mengikuti diskusi forum: ' . $forum->title,
+            'type' => 'forum',
+            'title' => 'Mengikuti diskusi forum: ' . $forum->title,
         ]);
 
         return view('user.forum.show', compact('forum', 'totalReplies'));

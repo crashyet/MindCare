@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleRead;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
 
 class ArticleController extends Controller
 {
@@ -45,13 +44,6 @@ class ArticleController extends Controller
                 ]);
             }
         }
-
-        Activity::create([
-    'user_id' => Auth::id(),
-    'type' => 'artikel',
-    'title' => 'Membaca artikel: ' . $article->title,
-]);
-
 
         // Ambil artikel lain sebagai rekomendasi
         $related = Article::where('category', $article->category)

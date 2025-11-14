@@ -14,11 +14,11 @@
                     <div>
                         <h1 class="text-3xl md:text-4xl font-bold mb-2">Selamat Datang di
                             <span
-                                class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">MindCare</span>
+                                class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nihil mollitia provident id eaque ducimus reiciendis rem est cupiditate blanditiis. Aliquam excepturi consectetur unde exercitationem inventore, quaerat facilis minus libero?MindCare</span>
                         </h1>
                         <p class="text-muted-foreground text-lg">Pantau perkembangan kesehatan mental Anda di sini</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0s;">
                             <div class="flex items-start justify-between mb-4">
@@ -32,12 +32,10 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span> -->
+                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span>
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Mood Hari Ini</p>
-                            <p id="mood-display" class="text-2xl font-bold">
-                                {{ Auth::user()->mood ?? 'Belum memilih' }}
-                            </p>                        
+                            <p class="text-2xl font-bold">Baik</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.1s;">
@@ -54,10 +52,10 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+2</span> -->
+                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+2</span>
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Artikel Dibaca</p>
-                            <p class="text-2xl font-bold">{{ $articleStats['total_read'] }}</p>
+                            <p class="text-2xl font-bold">12</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.2s;">
@@ -71,12 +69,12 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span> -->
+                                <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span>
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Diskusi Aktif</p>
-                            <p class="text-2xl font-bold"> {{ $forumStats['active_forums'] }}</p>
+                            <p class="text-2xl font-bold">8</p>
                         </div>
-                        <!-- <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.3s;">
                             <div class="flex items-start justify-between mb-4">
                                 <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -93,35 +91,74 @@
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Progress</p>
                             <p class="text-2xl font-bold">78%</p>
-                        </div> -->
+                        </div>
                     </div>
-<div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
-    <h2 class="text-xl font-semibold mb-4">Aktivitas Terbaru</h2> 
-
-    @forelse ($activities as $act)
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth mb-3">
-            <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
-
-            <div class="flex-1">
-                <p class="font-medium">{{ $act->title }}</p>
-
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">
-                        {{ $act->type }}
-                    </span>
-
-                    <p class="text-sm text-muted-foreground">
-                        {{ $act->created_at->diffForHumans() }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    @empty
-        <p class="text-gray-400">Belum ada aktivitas.</p>
-    @endforelse
-</div>
-
-
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
+                        <h2 class="text-xl font-semibold mb-4">Aktivitas Terbaru</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Membaca artikel: Mengatasi Kecemasan</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Artikel</span>
+                                        <p class="text-sm text-muted-foreground">2 jam lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Mengikuti diskusi di forum</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Forum</span>
+                                        <p class="text-sm text-muted-foreground">5 jam lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Menyelesaikan tes kesehatan mental</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Tes</span>
+                                        <p class="text-sm text-muted-foreground">1 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Chat dengan AI Assistant</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Chatbot</span>
+                                        <p class="text-sm text-muted-foreground">2 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-smooth">
+                                <div class="w-2 h-2 rounded-full bg-primary mt-2">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Menyelesaikan kuis edukasi: Stres Management</p>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">Edukasi</span>
+                                        <p class="text-sm text-muted-foreground">3 hari lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft">
                         <h2 class="text-xl font-semibold mb-4">Grafik Mood Mingguan</h2>
                         <div class="h-64 flex items-end justify-between gap-4 px-4">
@@ -182,58 +219,5 @@
             </div>
         </main>
     </div>
-
-    @if (session('just_logged_in'))
-    <div 
-        x-data="{ open: true }" 
-        x-show="open"
-        x-transition
-        class="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50"
-    >
-        <div class="bg-white rounded-2xl shadow-lg p-6 w-80 text-center">
-            <h2 class="text-xl font-semibold mb-4 text-gray-700">
-                Gimana perasaan kamu hari ini?
-            </h2>
-
-            <div class="space-y-2">
-                @foreach(['Senang 😊', 'Tenang 😌', 'Biasa saja 😐', 'Sedih 😢', 'Stres 😫'] as $mood)
-                    <button 
-                        @click="saveMood('{{ $mood }}'); open = false;"
-                        class="w-full py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition"
-                    >
-                        {{ $mood }}
-                    </button>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-        function saveMood(mood) {
-            fetch('{{ route('save.mood') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: JSON.stringify({ mood }),
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    const moodDisplay = document.getElementById('mood-display');
-                    if (moodDisplay) moodDisplay.textContent = mood;
-                }
-            });
-        }
-    </script>
-
-    @php
-        // 🧹 Hapus flag supaya popup tidak muncul lagi setelah refresh
-        session()->forget('just_logged_in');
-    @endphp
-    @endif
-
 
 @endsection

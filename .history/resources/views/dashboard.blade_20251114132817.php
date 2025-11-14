@@ -74,7 +74,7 @@
                                 <!-- <span class="text-sm font-medium text-green-600 bg-green-50 px-2 py-1 rounded">+3</span> -->
                             </div>
                             <p class="text-sm text-muted-foreground mb-1">Diskusi Aktif</p>
-                            <p class="text-2xl font-bold"> {{ $forumStats['active_forums'] }}</p>
+                            <p class="text-2xl font-bold">8</p>
                         </div>
                         <!-- <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 shadow-soft hover:shadow-medium transition-smooth animate-slide-up"
                             style="animation-delay: 0.3s;">

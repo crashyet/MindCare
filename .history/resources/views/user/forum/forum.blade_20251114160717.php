@@ -182,15 +182,15 @@
                             <p class="text-sm text-muted-foreground">Total Diskusi</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-4 shadow-soft text-center">
-                            <p class="text-2xl font-bold text-primary">{{ $stats['active_users'] }}</p>
+                            <p class="text-2xl font-bold text-primary">5,678</p>
                             <p class="text-sm text-muted-foreground">Anggota Aktif</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-4 shadow-soft text-center">
-                            <p class="text-2xl font-bold text-primary">{{ $stats['today_forums'] }}</p>
+                            <p class="text-2xl font-bold text-primary">45</p>
                             <p class="text-sm text-muted-foreground">Diskusi Hari Ini</p>
                         </div>
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-4 shadow-soft text-center">
-                            <p class="text-2xl font-bold text-primary">{{ $stats['today_replies'] }}</p>
+                            <p class="text-2xl font-bold text-primary">189</p>
                             <p class="text-sm text-muted-foreground">Balasan Hari Ini</p>
                         </div>
                     </div>
