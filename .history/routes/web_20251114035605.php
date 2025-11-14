@@ -10,16 +10,14 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\ArticleController as UserArticleController;
 use App\Http\Controllers\User\TestController as UserTestController;
-use App\Http\Controllers\User\ChatController;
+use App\Http\Controllers\User\ChatbotController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\MoodController;
-
 /*
 |--------------------------------------------------------------------------
 | General & Auth Routes
 |--------------------------------------------------------------------------
 */
-
 
 
 Route::post('/save-mood', [MoodController::class, 'saveMood'])->name('save.mood');
@@ -94,8 +92,7 @@ Route::patch('/tes/{id}/toggle', [TestController::class, 'toggleStatus'])->name(
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
     // 🏠 Dashboard utama
-    // Route::get('/', fn() => view('dashboard'))->name('user.dashboard');
-    Route::get('/', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/', fn() => view('dashboard'))->name('user.dashboard');
 
     // 📰 Artikel
     Route::get('/artikel', [UserArticleController::class, 'index'])->name('articles.index');
@@ -107,8 +104,6 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
     // 🤖 Chatbot
     Route::get('/chatbot', fn() => view('user.chatbot'))->name('user.chatbot');
-    Route::post('/chat/gemini', [App\Http\Controllers\User\ChatController::class, 'sendMessage']);
-
 
     // 💬 Forum
     Route::get('/forum', fn() => view('user.forum'))->name('user.forum');
@@ -117,30 +112,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/profil', fn() => view('user.profile'))->name('user.profile');
     Route::get('/setting', fn() => view('user.settings'))->name('user.settings');
 
-
-
     // 🧠 Tes Mental
     Route::get('/tes', [UserTestController::class, 'index'])->name('tes.index');
-    
-// Menampilkan soal (satu per satu)
-// 💡 Halaman hasil akhir — HARUS DI ATAS!
-Route::get('/tes-mental/{id}/result/{attempt}', [UserTestController::class, 'result'])
-    ->name('user.tests.result');
-
-
-
-
-// Menampilkan soal (satu per satu)
-Route::get('/tes-mental/{id}/{no?}', [UserTestController::class, 'show'])
-    ->name('user.tests.show');
-
-// Menyimpan jawaban
-Route::post('/tes-mental/{id}/{no}', [UserTestController::class, 'answer'])
-    ->name('user.tests.answer');
-
-
-
-
-
 });
 
